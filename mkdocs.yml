@@ -1,0 +1,28 @@
+site_name: k8s Refs
+site_url: https://example.com/k8s
+repo_url: https://github.com/example/repository/
+nav:
+  - 'Welcome':
+    - index.md
+  - 'Overview':
+    - k8s-core-concepts.md
+  - 'Configuration':
+          - k8s-config-configmaps.md
+          - k8s-config-seccontexts.md
+          - k8s-config-appresources.md
+          - k8s-config-secrets.md
+          - k8s-config-serviceaccounts.md
+  - 'Observability':
+    - k8s-observability.md
+  - 'Networking':
+    - k8s-networking.md
+  - about.md
+theme: 
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - go
+    - bash
+  prev_next_buttons_location: both
+
