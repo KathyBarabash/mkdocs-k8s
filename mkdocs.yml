@@ -1,6 +1,6 @@
-site_name: k8s Refs
-site_url: https://example.com/k8s
-repo_url: https://github.com/example/repository/
+site_name: mkdocs-k8s
+site_url: https://example.com/mkdocs-k8s
+repo_url: https://github.com/KathyBarabash/mkdocs-k8s.git
 nav:
   - 'Welcome':
     - index.md
