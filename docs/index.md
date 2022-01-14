@@ -14,12 +14,12 @@ This documentation set summarises my learnings around k8s and includes topic sum
 
 ## Topics
 
-1. [Core Concepts](k8s/k8s-core-concepts.md)
-1. [Configuration](k8s/k8s-configuration.md)
-1. [Complex Pods](k8s/k8s-complex-pods.md)
-1. [Observability](k8s/k8s-observability.md)
-1. [Pod Design](k8s/k8s-pod-design.md)
-1. [Networking](k8s/k8s-networking.md)
+1. [Core Concepts](k8s-core-concepts.md)
+1. [Configuration](k8s-config.md)
+1. [Complex Pods](k8s-complex-pods.md)
+1. [Observability](k8s-observability.md)
+1. [Pod Design](k8s-pod-design.md)
+1. [Networking](k8s-networking.md)
 
 ---
 
