@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://example.com/mkdocs-k8s/k8s-config-appresources/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Application Resource Requirements - mkdocs-k8s</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Application Resource Requirements";
+    var mkdocs_page_input_path = "k8s-config-appresources.md";
+    var mkdocs_page_url = "/mkdocs-k8s/k8s-config-appresources/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> mkdocs-k8s</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">My Kubernetes Reference</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Overview</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-core-concepts/">Core Concepts</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Configuration</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-configmaps/">Config Maps</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-seccontexts/">K8s Security Contexts</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Application Resource Requirements</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#cpu-requests-and-limits">CPU requests and limits</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#memory-settings">Memory settings</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-secrets/">Secrets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-serviceaccounts/">Service Accounts</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Observability</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-observability/">K8s observability</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Networking</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-networking/">K8s networking</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">mkdocs-k8s</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Configuration &raquo;</li>
+        
+      
+    
+    <li>Application Resource Requirements</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/KathyBarabash/mkdocs-k8s.git/edit/master/docs/k8s-config-appresources.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+        <a href="../k8s-config-secrets/" class="btn btn-neutral float-right" title="Secrets">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../k8s-config-seccontexts/" class="btn btn-neutral" title="K8s Security Contexts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="application-resource-requirements">Application resource requirements</h1>
+<p>k8s <a href="https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/">Application resource requirements</a> construct is used to provide to the kubernetes system information on how many resources should be ‘reserved’ for each container in the pods in a deployment and to constrain resource allocation. In addition, resource allocation quotas can be defined at namespace level.
+K8s allows defining resource requirements for CPU and memory, in form of <code>request</code> to define the requisted resource amount and <code>limits</code> to define the maximal resource amount to be allocated. Both <code>requests</code> and <code>limits</code> can be defined for pods and containers while <code>limits</code> can also be defined for namespaces. <code>CPU requests</code> and <code>CPU limits</code> are expressed as a fraction of a core that is reserved for the container, either as a decimal number (0.1) or as a ‘milli’ value (100m); 0.1 and 100m are equivalent. <code>Memory requests</code> and <code>memory limits</code> are expressesed as a number of bytes of memory to be reserved for the container, either in 10-based units, e.g. E, P, T, G, M, K or in 2-based units, e.g. Ei, Pi, Ti, Gi, Mi, Ki. </p>
+<p>k8s scheduler works with the requests and limits to schedule pods across the cluster. The sum of the requests for all containers running on a node will never exceed the total available resources on that node. This means that on a 2 core machine, a maximum of 4 pods with a request of 500m will be scheduled.
+The requests are reserved, and are not linked to the actual resource usage on a cluster. With incorrect requests, the cluster can remain underutilized.</p>
+<h2 id="cpu-requests-and-limits">CPU requests and limits</h2>
+<p>The following example defines a pod with CPU limit of <code>1</code> CPU and CPU reservation of<code>0.5</code> CPU that runs stress container that tries to use up <code>2</code> CPUs:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-demo
+spec:
+  containers:
+  - name: cpu-demo-ctr
+    image: vish/stress
+    resources:
+      limits:
+        cpu: &quot;1&quot;
+      requests:
+        cpu: &quot;0.5&quot;
+    args:
+    - -cpus
+    - &quot;2&quot;
+</code></pre>
+<p>Resource usage can be verified with:</p>
+<pre><code>kubectl create -f cpu-requests.yaml
+pod/cpu-demo created
+kubectl top pods
+NAME       CPU(cores)   MEMORY(bytes)
+cpu-demo   990m         1Mi
+</code></pre>
+<p>When pod tries to exceed the limits, it keeps running but won't be given more cycles.</p>
+<h2 id="memory-settings">Memory settings</h2>
+<p>The following defines a pod that needs <code>150</code>MB of memory while being allotted minimun of <code>100</code> and the maximum of <code>200</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-low
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    resources:
+      limits:
+        memory: &quot;200Mi&quot;
+      requests:
+        memory: &quot;100Mi&quot;
+    command: [&quot;stress&quot;]
+    args: [&quot;--vm&quot;, &quot;1&quot;, &quot;--vm-bytes&quot;, &quot;150M&quot;, &quot;--vm-hang&quot;, &quot;1&quot;]
+</code></pre>
+<p>Run the following to watch the memory utilization:</p>
+<pre><code>kubectl create -f memory-low.yaml
+kubectl top pods
+NAME         CPU(cores)   MEMORY(bytes)
+memory-low   40m          151Mi
+</code></pre>
+<p>And if we check a kubectl get pods, we’ll see zero restarts (as expected):</p>
+<pre><code>NAME         READY   STATUS    RESTARTS   AGE
+memory-low   1/1     Running   0          3m56s
+</code></pre>
+<p>We can now edit the pod definition, and put a memory limit of 125Mi in place. This will create issues, and will cause kubernetes to kill and restart our pod.</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-high
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    resources:
+      limits:
+        memory: &quot;125Mi&quot;
+      requests:
+        memory: &quot;100Mi&quot;
+    command: [&quot;stress&quot;]
+    args: [&quot;--vm&quot;, &quot;1&quot;, &quot;--vm-bytes&quot;, &quot;150M&quot;, &quot;--vm-hang&quot;, &quot;1&quot;]
+</code></pre>
+<p>We can create this pod, and we can quickly see that I’ll get killed and restarted:</p>
+<pre><code>kubectl create -f memory-high.yaml
+kubectl get pods --watch
+
+NAME          READY   STATUS      RESTARTS   AGE
+memory-high   0/1     OOMKilled   0          6s
+memory-low    1/1     Running     0          6m
+memory-high   0/1     OOMKilled   1          7s
+memory-high   0/1     CrashLoopBackOff   1          8s
+memory-high   0/1     OOMKilled          2          21s
+</code></pre>
+<p>As you can see, the container is killed due to exceeding it’s memory requirements. Notice how this is different from our earlier CPU scenario?</p>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../k8s-config-secrets/" class="btn btn-neutral float-right" title="Secrets">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../k8s-config-seccontexts/" class="btn btn-neutral" title="K8s Security Contexts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/KathyBarabash/mkdocs-k8s.git/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../k8s-config-seccontexts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../k8s-config-secrets/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

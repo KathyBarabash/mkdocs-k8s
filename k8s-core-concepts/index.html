@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://example.com/mkdocs-k8s/k8s-core-concepts/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Core Concepts - mkdocs-k8s</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Core Concepts";
+    var mkdocs_page_input_path = "k8s-core-concepts.md";
+    var mkdocs_page_url = "/mkdocs-k8s/k8s-core-concepts/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> mkdocs-k8s</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">My Kubernetes Reference</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Overview</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Core Concepts</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#kubernetes-api">Kubernetes API</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kubernetes-objects">Kubernetes Objects</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#k8s-namespaces">k8s Namespaces</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#k8s-labels-selectors-and-annotation">k8s Labels, Selectors and Annotation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#k8s-pods">k8s Pods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Configuration</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-configmaps/">Config Maps</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-seccontexts/">K8s Security Contexts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-appresources/">Application Resource Requirements</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-secrets/">Secrets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-serviceaccounts/">Service Accounts</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Observability</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-observability/">K8s observability</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Networking</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-networking/">K8s networking</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">mkdocs-k8s</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Overview &raquo;</li>
+        
+      
+    
+    <li>Core Concepts</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/KathyBarabash/mkdocs-k8s.git/edit/master/docs/k8s-core-concepts.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+        <a href="../k8s-config-configmaps/" class="btn btn-neutral float-right" title="Config Maps">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href=".." class="btn btn-neutral" title="My Kubernetes Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="kubernetes-core-concepts">Kubernetes Core Concepts</h1>
+<p><strong>k8s</strong> is a container orchestrator acting as a desired state controller, with API to define the desired state and the system to take the necessary actions to achieve that desired state.</p>
+<h2 id="kubernetes-api">Kubernetes API</h2>
+<p><a href="https://kubernetes.io/docs/concepts/overview/kubernetes-api/">k8s REST API</a> archtecture has changed over time. Initial API version, still available through <code>/api/v1</code>, was hard to extend. Current API architecture supports API groups and is extensible through <strong>CRDs</strong> (CustomResourceDefinitions). Current k8s API methods belong to one of the API groups and can be classified to one of the three maturity groups: <em>Alpha</em>, <em>Beta</em>, and <em>Stable</em>.  API Clients such as <code>kubectl</code> exist to convert consize commands to k8s API REST calls. </p>
+<hr />
+<h2 id="kubernetes-objects">Kubernetes Objects</h2>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/">k8s Objects</a> such as <em>pod</em>, <em>service</em>, <em>deployment</em>, etc. are persistent entities that represent both the desired and the actual state of the k8s system by containing two nested fields:</p>
+<ul>
+<li>The <strong>spec</strong>, provided by the end-user as YAML files</li>
+<li>The <strong>status</strong>, generated by the kubernetes control plane through monitoring and observation</li>
+</ul>
+<p>There are three ways to <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/">create k8s objects</a>:</p>
+<ul>
+<li>Imperative commands, e.g. <code>kubectl run nginx –image nginx</code></li>
+<li>Imperative object configuration, e.g. <code>kubectl [create/delete/replace] commands</code></li>
+<li>Declarative object configuration, e.g. <code>kubectl apply</code></li>
+</ul>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/">Object names</a> have to be unique per object type per namespace but can be reused for different types and across namespaces. k8s generates an  historically unique UIDs for all the objects.
+It is possible to obtain the UID of a resource through <code>kubectl get</code> command, e.g. <code>kubectl get pod captureorder-5d6fd597d4-jhdqf -o json | jq .metadata.uid</code></p>
+<hr />
+<h2 id="k8s-namespaces">k8s Namespaces</h2>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a> are used to create multiple ‘virtual clusters’ on top of a single kubernetes cluster.
+Most <code>kubectl</code> commands are performed in a context of a default namespace. This can be changed by adding the <code>--namespace=xxx</code> flag. Commands addressing all the namespaces require the <code>--all-namespaces</code> flag. To see what is the default namespace, run <code>kubectl config view | grep namespace</code>. To set the default namespace, run <code>kubectl config set-context --current --namespace=xxx</code>.</p>
+<p>Namespaces are also important in a context of DNS resolution. k8s creates DNS entry for every k8s service in a form of <code>service.namespace.svc.cluster.local</code> FQNA. To reach services outside of the current default namespace, one has to specify this FQDN rather than just the service name.</p>
+<hr />
+<h2 id="k8s-labels-selectors-and-annotation">k8s Labels, Selectors and Annotation</h2>
+<p>k8s supports <a href="http:// https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">labels and selectors</a> to organize objects into sets for ease of reference. 
+To create a service linked to a certain deployment, it is possible to label the deployment and specify this label as a selector in the service specification YAML, e.g.:</p>
+<p><strong>Deployement spec</strong></p>
+<pre><code>apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: azure-vote-front
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: azure-vote-front
+    spec:
+      containers:
+      - name: azure-vote-front
+        image: microsoft/azure-vote-front:redis-v1
+        ports:
+        - containerPort: 80
+        env:
+        - name: REDIS
+          value: &quot;azure-vote-back&quot;
+</code></pre>
+<p><strong>Service spec</strong></p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: azure-vote-front
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: azure-vote-front
+</code></pre>
+<p>In the above example, we create a deployment named <code>azure-vote-front</code> with the label <code>app: azure-vote-front</code>. Afterwards, we create a service named <code>azure-vote-front</code> which references that deployment with the selector <code>app: azure-vote-front</code>.</p>
+<p>Labels and selectors are not unique by design and multiple k8s resources can have the same label attached to them. Selector can specify labels that are equal (through <code>=</code> or <code>==</code>) or not equal (through <code>!=</code>). Selectors can also specify sets of labels, e.g. <code>app in (web, db, backend)</code> or <code>app not in (monitoring, backup)</code>.</p>
+<p>In addition to labels and selectors, k8 supports assigning arbitrary metada to resources through <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">annotations</a>. In the following example, annotation is used to create a service with an Azure load balancer of the internal type:</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: internal-app
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: &quot;true&quot;
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: internal-app
+</code></pre>
+<hr />
+<h2 id="k8s-pods">k8s Pods</h2>
+<p>A <em>pod</em> is the basic execution unit within k8s and can contain multiple containers in it. Within a pod, containers share networking and storage access. A pod is scheduled as a whole on one of the nodes in your cluster, meaning all containers in a pod will run on the same node. Multiple instances of a pod can be run across multiple cluster nodes.</p>
+<p>By design, pods are ephemeral. They can be killed or moved to another node by the system, meaning any not explicitely persisted state can be lost. Typically, you won’t create individual pods directly; rather, you’ll create a deployment, which will create pods for you.</p>
+<h3 id="example">Example</h3>
+<p>Create the following simple pod specification as <code>simple-nginx-pod.yaml</code> file:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-nginx-pod
+spec:
+  containers:
+    - name: simple-nginx
+      image: nginx
+</code></pre>
+<p>Then, deploy a new pod in your kubernetes cluster with the following command:</p>
+<pre><code>kubectl apply -f simple-nginx-pod.yam
+</code></pre>
+<p>Run <code>kubectl get pods</code> to see the pod was created. To verify that nginx is running:</p>
+<pre><code>kubectl exec -it simple-nginx-pod /bin/bash   # enter bash shell inside the container
+# these commands are to be run inside the container
+apt update                                    # prep the container
+apt install curl -y                           # install curl  
+curl localhost                                # verify nginx is active
+</code></pre>
+<p>k8s supports specifying the way resources will be observed and monitored, e.g. with <em>readinessProbes</em> and <em>livenessProbes</em>. For resource as simple as pod, only <em>livenessProbes</em> can be specifyed. <code>livenessProbe</code> can not be added to an active pod, another instance has to be created with this new definition, e.g save the following in <code>nginx-pod-liveness.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-liveness
+spec:
+  containers:
+    - name: nginx-pod-liveness
+      image: nginx
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 15
+        timeoutSeconds: 1
+</code></pre>
+<pre><code>kubectl apply -f nginx-pod-liveness.yaml
+kubectl get pods --watch
+</code></pre>
+<p>Now open up a second terminal, and do the following: to disturb nginx operations and to make our livenessProbe fail:</p>
+<pre><code>kubectl exec -it basic-pod /bin/bash
+mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.backup 
+</code></pre>
+<p>In the first terminal, watching the pods in the cluster, it can be seen that Kubernetes has restarted our pod. In that restarted pod, we’ll have the original filesystem again (our move command will have been ‘undone’), and the <code>livenessProbe</code> will be succesfull again. If you want even more info on the restart of your pod, execute the following command:</p>
+<pre><code>kubectl describe pod/nginx-pod-liveness
+</code></pre>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../k8s-config-configmaps/" class="btn btn-neutral float-right" title="Config Maps">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="My Kubernetes Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/KathyBarabash/mkdocs-k8s.git/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../k8s-config-configmaps/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

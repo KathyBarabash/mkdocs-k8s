@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://example.com/mkdocs-k8s/k8s-config-configmaps/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Config Maps - mkdocs-k8s</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Config Maps";
+    var mkdocs_page_input_path = "k8s-config-configmaps.md";
+    var mkdocs_page_url = "/mkdocs-k8s/k8s-config-configmaps/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/go.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/bash.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> mkdocs-k8s</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">My Kubernetes Reference</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Overview</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-core-concepts/">Core Concepts</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Configuration</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Config Maps</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#from-literal">From literal</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#from-config-file">From .config file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#from-yaml-file">From YAML File</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-seccontexts/">K8s Security Contexts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-appresources/">Application Resource Requirements</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-secrets/">Secrets</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-config-serviceaccounts/">Service Accounts</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Observability</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-observability/">K8s observability</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Networking</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../k8s-networking/">K8s networking</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">mkdocs-k8s</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Configuration &raquo;</li>
+        
+      
+    
+    <li>Config Maps</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/KathyBarabash/mkdocs-k8s.git/edit/master/docs/k8s-config-configmaps.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+        <a href="../k8s-config-seccontexts/" class="btn btn-neutral float-right" title="K8s Security Contexts">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../k8s-core-concepts/" class="btn btn-neutral" title="Core Concepts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="configmaps">Configmaps</h1>
+<p><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/">ConfigMaps</a> are used to store non secret configuration data in the k8s server and to deliver it to the containers, while separating the configuration data from other resource definitions. ConfigMaps can deliver configuration that can be encoded as key-value pairs, e.g. command-line arguments, environment variables, ports, etc., and can be defined in several different ways: from literal, from .config file, with yaml, and using kustomization.yaml. Below are examples of using different ways to deliver environment variables <code>YEAR</code> with  value <code>2022</code> and <code>MONTH</code> with value <code>Jan</code> to a pod. We start with a single variable and then proceed extending to a number of variables.</p>
+<h2 id="from-literal"><strong>From literal</strong></h2>
+<p>First, create a configmap named <code>date-from-literal</code> with a single key-value pair <code>YEAR=2022</code>:</p>
+<pre><code>kubectl create configmap date-from-literal --from-literal=YEAR=2022
+</code></pre>
+<p>Now specify a pod with a reference to the <code>date-from-literal</code> configmap in <code>simplepodconfig-from-literal.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: config-literal
+spec:
+  containers:
+    - name: basic
+      image: nginx
+      env:
+        - name: YEAR
+          valueFrom:
+            configMapKeyRef:
+              name: date-from-literal
+              key: YEAR
+
+</code></pre>
+<p>And create the pod:</p>
+<pre><code>kubectl create -f simplepodconfig-from-literal.yaml
+</code></pre>
+<p>VWe now can verify the environment variable is set as specified:</p>
+<pre><code>kubectl exec -it config-literal /bin/bash
+echo $YEAR      #This is run form withing the container and should return 2022
+</code></pre>
+<blockquote>
+<p><strong>Question</strong>: Can multiple variables be defined with <code>--from-literal</code></p>
+</blockquote>
+<h2 id="from-config-file"><strong>From .config file</strong></h2>
+<p>First, create .config file with the key-value pair:</p>
+<pre><code>echo 'YEAR=2022' &gt; date.config
+</code></pre>
+<p>Create configmap named <code>date-from-file</code> from <code>date.config</code> file:</p>
+<pre><code>kubectl create configmap date-from-file --from-file=date.config
+</code></pre>
+<p>Now, specify a pod referencing <code>date-from-file</code> configmap in  a <code>simplepodconfig-from-file.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: config-file
+spec:
+  containers:
+    - name: basic
+      image: nginx
+      env:
+        - name: YEAR
+          valueFrom:
+            configMapKeyRef:
+              name: date-from-file
+              key: date.config
+</code></pre>
+<p>Deploy the pod:</p>
+<pre><code>kubectl apply -f simplepodconfig-from-file.yaml
+</code></pre>
+<p>Then exec into the container to get the value of the <code>YEAR</code> environmental variable:</p>
+<pre><code>kubectl exec -it config-file /bin/bash
+echo $YEAR
+</code></pre>
+<p>Here, the output is <code>YEAR=2022</code> and not just <code>2022</code> as expected meaning that with this method we deliver the content of the file not the variable assignemnt. To deliver environment variable as desired, we need to create configmap with <code>--from-env-file</code> flag: </p>
+<pre><code>kubectl create configmap date-from-envfile --from-env-file=date.config
+</code></pre>
+<p>This new config called <code>date-from-envfile</code> can now be referenced in pod specification files, e.g. <code>simplepodconfig-from-envfile.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: env-file
+spec:
+  containers:
+    - name: basic
+      image: nginx
+      env:
+        - name: YEAR
+          valueFrom:
+            configMapKeyRef:
+              name: date-from-envfile
+              key: YEAR
+
+kubectl apply -f simplepodconfig-envfile.yaml
+kubectl exec -it env-file /bin/bash
+echo $YEAR
+</code></pre>
+<p>You can use the following <code>describe</code> command to see the differences between the configmaps created with the different kubectl flag:</p>
+<pre><code>kubectl describe configmap/date-fromfile configmap/date-from-envfile configmap/date-from-literal
+</code></pre>
+<p>Now lets see how to multiple environment variables can be set. First, we add another value to date.config, and recreate the all configmaps:</p>
+<pre><code>echo 'MONTH=Jan' &gt;&gt; date.config
+
+kubectl delete configmap/date-from-file configmap/date-from-envfile
+
+kubectl create configmap date-from-file --from-file=date.config
+kubectl create configmap date-from-envfile --from-env-file=date.config
+kubectl describe configmap/date-from-file configmap/date-from-envfile
+
+</code></pre>
+<p>We see again that <code>--from-file</code> flag actually loads the file contents while  <code>--from-env-file</code> loads the assignes multiple varieables defined in the config file.</p>
+<h2 id="from-yaml-file"><strong>From YAML File</strong></h2>
+<p>Configmaps can also be specified like other k8s resources, with YAML files.
+First, specify the <code>data-config-from-yaml</code> configmap in <code>configmap.yaml</code> file:</p>
+<pre><code>kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: data-config-from-yaml
+data:
+  myname: this-is-yaml
+</code></pre>
+<p>And then create the <code>data-config-from-yaml</code> configmap by running:</p>
+<pre><code>kubectl apply -f configmap.yaml
+</code></pre>
+<p>This new config called <code>data-config-from-yaml</code> can now be referenced in pod specification files, e.g. <code>simplepodconfig-from-yaml.yaml</code>:</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: config-yaml
+spec:
+  containers:
+    - name: basic
+      image: nginx
+      env:
+        - name: MYNAMEFROMYAML
+          valueFrom:
+            configMapKeyRef:
+              name: config-from-yaml
+              key: myname
+</code></pre>
+<pre><code>kubectl apply -f simplepodyaml.yaml
+</code></pre>
+<p>Test with:</p>
+<pre><code>kubectl exec -it config-yaml /bin/bash
+echo $MYNAMEFROMYAML
+</code></pre>
+<p>The output should be</p>
+<pre><code>this-is-yaml
+</code></pre>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../k8s-config-seccontexts/" class="btn btn-neutral float-right" title="K8s Security Contexts">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../k8s-core-concepts/" class="btn btn-neutral" title="Core Concepts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/KathyBarabash/mkdocs-k8s.git/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../k8s-core-concepts/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../k8s-config-seccontexts/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
