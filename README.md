@@ -1,16 +1,17 @@
 # mkdocs-k8s
 
-Documentation site with summarized knowledge and axperience on k8s.
-The site is developed using [mkdocs](mkdocs.org) site generator.
+This is a documentation site with summarized knowledge and experience on k8s.
+The site is developed using [mkdocs](mkdocs.org) site generator and deployed to the gh-pages branch of this repository using `mkdocs` sw.
 
-The site is deployed to the gh-pages branch of this repository using mkdocs sw.
-
-## mkdocs Project Layout
+## Project Directory Structure
 ```
-mkdocs.yml    # The configuration file.
+mkdocs.yml    # mkdocs configuration file.
 docs/
-index.md  # The documentation homepage.
-...       # Other markdown pages, images and other files.
+  index.md        # The documentation homepage.
+  img/
+    favicon.ico   # image to be used by mkdocs as site favicon
+    ...           # other images referenced from the documentation files
+  ...             # Other documentation files
 ```
 
 ## Change/Update Instructions
