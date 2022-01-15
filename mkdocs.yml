@@ -12,6 +12,12 @@ nav:
           - k8s-config-appresources.md
           - k8s-config-secrets.md
           - k8s-config-serviceaccounts.md
+  - 'Multi-container Pod Patterns':
+    - k8s-pod-patterns.md
+    - k8s-pod-patterns-sidecar.md
+    - k8s-pod-patterns-ambassador.md
+    - k8s-pod-patterns-adapter.md
+    - k8s-pod-patterns-init.md
   - 'Observability':
     - k8s-observability.md
   - 'Networking':
